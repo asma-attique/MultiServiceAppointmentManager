@@ -36,6 +36,25 @@ Built using ASP.NET Core MVC and Entity Framework Core with a SQLite database, t
 - **Top Services This Week:** Displayed as a pie chart highlighting the most booked services.  
 - **Upcoming Appointments:** List of the next 5 upcoming appointments to prepare your schedule.
 
+### Screenshots
+- Dashboard:  ![Dashboard](Screenshots/1.%20Dashboard.jpeg)
+- Providers Main: ![Providers Main](Screenshots/2.%20Providers%20Main.jpeg)
+- Add New Provider: ![Add New Provider](Screenshots/3.%20Providers%20-%20Add%20New%20Provider.jpeg)
+- Edit Providers: ![Edit Provider](Screenshots/4.%20Provider%20-%20Edit.jpeg)
+- Provider Detail: ![Provider Detail](5.%20Providers%20-%20Details.jpeg)
+- Delete Providers: ![Delete Providers](Screenshots/6.%20Providers%20-%20Delete.jpeg)
+- Service Main: ![Service Main](Screenshots/7.%20Services%20-%20Main.jpeg)
+- Add New Service: ![Add New Service](Screenshots/8.%20Services%20-%20Add%20New%20Service.jpeg)
+- Edit Service: ![Edit Service](Screenshots/9.%20Services%20-%20Edit.jpeg)
+- Delete Service: ![Delete Service](Screenshots/10.%20Services%20-%20Delete.jpeg)
+- Appointment Main Page: ![Appointment Main](Screenshots/11.%20Appointments%20-%20Main.jpeg)
+- Create New Appointment: ![Create New Appointment](Screenshots/12.%20Appointments%20-%20Create%20Appointment.jpeg)
+- Edit Appointment: ![Edit Appointment](Screenshots/13.%20Appointments%20-%20Edit.jpeg)
+- Appointment Detail: ![Appointment Detail](Screenshots/14.%20Appointments%20-%20Details.jpeg)
+- Delete Appointment: ![Delete Appointment](Screenshots/15.%20Appointments%20-%20Delete.jpeg)
+- Date Filter: ![Date Filter](Screenshots/16.%20Appointments%20-%20Date%20filter.jpeg)
+- Provider Filter: ![Provider Filter](Screenshots/17.%20Appointments%20-%20Provider%20filter.jpg)
+
 ### UI and UX
 - Responsive layout using Bootstrap 5.  
 - Modern and clean UI with intuitive filtering and navigation.  
