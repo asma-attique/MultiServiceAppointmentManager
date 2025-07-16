@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MultiServiceAppointmentManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b82d5b505b978231d0c3002ba57372c803cc7b91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5940f630fffa40f641adcd4af5012d36fe0ad51e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MultiServiceAppointmentManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MultiServiceAppointmentManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
