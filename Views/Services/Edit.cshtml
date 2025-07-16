@@ -1,0 +1,53 @@
+@model Service
+
+@{
+    ViewData["Title"] = "Edit Service";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow rounded">
+                <div class="card-header text-white d-flex align-items-center" style="background-color: #1b7777;">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    <h4 class="mb-0">Edit Service</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Service Name -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-tag-fill me-2 text-primary"></i>
+                                Service Name
+                            </h5>
+                            <input asp-for="Name" class="form-control form-control-lg" placeholder="Enter service name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Charges -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-cash-stack me-2 text-success"></i>
+                                Charges (PKR)
+                            </h5>
+                            <input asp-for="Charges" type="number" min="0" class="form-control form-control-lg" placeholder="Enter charges in PKR" />
+                            <span asp-validation-for="Charges" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="bi bi-save me-1"></i> Save Changes
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                                <i class="bi bi-arrow-left me-1"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

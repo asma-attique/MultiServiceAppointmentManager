@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Dashboard</h2>
+
+    <!-- KPI Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white mb-3" style="background-color: #1b7777;">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Appointments</h5>
+                    <h3>@ViewBag.TotalAppointmentsToday</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white mb-3" style="background-color: #1b7777;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Charges Today</h5>
+                    <h3>PKR @ViewBag.TotalChargesToday</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white mb-3" style="background-color: #1b7777;">
+                <div class="card-body">
+                    <h5 class="card-title">Charges This Week</h5>
+                    <h3>PKR @ViewBag.TotalChargesThisWeek</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <canvas id="providersChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="servicesChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Upcoming Appointments -->
+    <div class="card shadow mb-4 rounded">
+        <div class="card-header fw-bold" style="background-color: #1b7777; color: white;">
+            <i class="bi bi-calendar-plus me-2"></i> Upcoming Appointments
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th class="fw-bold">Date</th>
+                        <th class="fw-bold">Time</th>
+                        <th class="fw-bold">Provider</th>
+                        <th class="fw-bold">Customer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.UpcomingAppointments)
+                    {
+                        <tr style="vertical-align: middle;">
+                            <td class="fw-semibold">@(((DateTime)item.Date).ToString("yyyy-MM-dd"))</td>
+                            <td class="fw-semibold">
+                            @(DateTime.Today.Add(TimeSpan.Parse(item.Time.ToString())).ToString("hh:mm tt").ToUpper())
+                            </td>
+                            <td class="fw-semibold">@item.Provider?.Name</td>
+                            <td class="fw-semibold">@item.CustomerName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script>
+        // ✅ Providers Chart
+        var ctx1 = document.getElementById('providersChart').getContext('2d');
+        var providersChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(ViewBag.TopProvidersNames)),
+                datasets: [{
+                    label: 'Providers',
+                    data: @Html.Raw(Json.Serialize(ViewBag.TopProvidersCounts)),
+                    backgroundColor: [
+                        '#1B7777', // Teal (your primary)
+                        '#117A65', // Deep Green
+                        '#F39C12', // Warm Amber
+                        '#2980B9', // Bright Blue
+                        '#D35400', // Burnt Orange
+                        '#8E44AD', // Purple
+                        '#C0392B'  // Red Brick
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Top Providers This Week' }
+                }
+            }
+        });
+
+        // ✅ Services Chart
+        var ctx2 = document.getElementById('servicesChart').getContext('2d');
+        var servicesChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: @Html.Raw(Json.Serialize(ViewBag.TopServicesNames)),
+                datasets: [{
+                    data: @Html.Raw(Json.Serialize(ViewBag.TopServicesCounts)),
+                    backgroundColor: [
+                        '#1B7777', // Teal (your primary)
+                        '#117A65', // Deep Green
+                        '#F39C12', // Warm Amber
+                        '#2980B9', // Bright Blue
+                        '#D35400', // Burnt Orange
+                        '#8E44AD', // Purple
+                        '#C0392B'  // Red Brick
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Top Services This Week' },
+                    datalabels: {
+                        color: '#fff',
+                        font: {
+                            weight: 'bold',
+                            size: 12
+                        },
+                        formatter: function (value, context) {
+                            const label = context.chart.data.labels[context.dataIndex];
+                            const words = label.split(' ');
+                            let result = '';
+                            let line = '';
+
+                            words.forEach(word => {
+                                if ((line + word).length > 10) {
+                                    result += line + '\n';
+                                    line = word + ' ';
+                                } else {
+                                    line += word + ' ';
+                                }
+                            });
+                            result += line;
+                            return result.trim();
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+    </script>
+}

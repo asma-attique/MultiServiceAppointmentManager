@@ -1,0 +1,59 @@
+@model Provider
+
+@{
+    ViewData["Title"] = "Provider Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow rounded">
+                <div class="card-header text-white d-flex align-items-center" style="background-color: #1b7777;">
+                    <i class="bi bi-person-badge me-2"></i>
+                    <h4 class="mb-0">Provider Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-person-fill me-2 text-primary"></i>
+                            Name
+                        </h5>
+                        <p class="fs-5 mb-0">@Model.Name</p>
+                    </div>
+
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-briefcase-fill me-2 text-success"></i>
+                            Service Type
+                        </h5>
+                        <p class="fs-5 mb-0">
+                            @foreach (var service in Model.Services)
+                            {
+                                <span class="badge bg-info text-dark">@service.Name</span>
+                            }
+                        </p>
+                    </div>
+
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-award-fill me-2 text-warning"></i>
+                            Years of Experience
+                        </h5>
+                        <p class="fs-5 mb-0">
+                            <span class="badge bg-success fs-6">@Model.YearsOfExperience Years</span>
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-white">
+                            <i class="bi bi-pencil-square me-1"></i> Edit
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

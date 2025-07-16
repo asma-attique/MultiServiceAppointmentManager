@@ -1,0 +1,52 @@
+@model Service
+
+@{
+    ViewData["Title"] = "Create Service";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow rounded">
+                <div class="card-header text-white d-flex align-items-center" style="background-color: #1b7777;">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    <h4 class="mb-0">Add New Service</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Service Name -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-tools me-2 text-primary"></i>
+                                Service Name
+                            </h5>
+                            <input asp-for="Name" class="form-control form-control-lg mt-2" placeholder="Enter service name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Charges -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-cash-stack me-2 text-success"></i>
+                                Charges (PKR)
+                            </h5>
+                            <input asp-for="Charges" class="form-control form-control-lg mt-2" placeholder="Enter service charges in PKR" />
+                            <span asp-validation-for="Charges" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save me-1"></i> Save
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

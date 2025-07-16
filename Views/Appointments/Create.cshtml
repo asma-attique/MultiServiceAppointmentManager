@@ -1,0 +1,139 @@
+@model MultiServiceAppointmentManager.ViewModels.AppointmentViewModel
+
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow rounded">
+                <div class="card-header text-white d-flex align-items-center" style="background-color: #1b7777;">
+                    <i class="bi bi-calendar-plus me-2"></i>
+                    <h4 class="mb-0">Create Appointment</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Date -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-calendar-event-fill me-2 text-primary"></i>
+                                Appointment Date
+                            </h5>
+                            <input asp-for="Date" type="date" class="form-control form-control-lg mt-2"
+                                min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                                max="@DateTime.Today.AddMonths(2).ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-clock-fill me-2 text-success"></i>
+                                Time Slot
+                            </h5>
+                            <select asp-for="Time" class="form-select form-select-lg mt-2">
+                                <option value="">-- Select Time Slot --</option>
+                                @foreach (var slot in Model.TimeSlots)
+                                {
+                                    <option value="@slot.Value">@slot.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Time" class="text-danger"></span>
+                        </div>
+
+                        <!-- Customer Name -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-person-fill me-2 text-info"></i>
+                                Customer Name
+                            </h5>
+                            <input asp-for="CustomerName" class="form-control form-control-lg mt-2"
+                                placeholder="Enter customer name" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+
+                        <!-- Service -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-list-check me-2 text-danger"></i>
+                                Select Service
+                            </h5>
+                            <select asp-for="ServiceId" class="form-select form-select-lg mt-2" id="serviceDropdown">
+                                <option value="">-- Select Service --</option>
+                                @foreach (var service in Model.Services)
+                                {
+                                    <option value="@service.Value">@service.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ServiceId" class="text-danger"></span>
+                        </div>
+
+                        @* <div class="mb-4">
+                            <h5>Select Services</h5>
+                            @foreach (var service in Model.Services)
+                            {
+                                <div class="form-check">
+                                    <input type="checkbox"
+                                           name="SelectedServiceIds"
+                                           value="@service.Value"
+                                           class="form-check-input" />
+                                    <label class="form-check-label">@service.Text</label>
+                                </div>
+                            }
+                        </div> *@
+
+                        <!-- Provider -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h5 class="fw-bold">
+                                <i class="bi bi-person-badge-fill me-2 text-warning"></i>
+                                Select Provider
+                            </h5>
+                            <select asp-for="ProviderId" class="form-select form-select-lg mt-2" id="providerDropdown">
+                                <option value="">-- Select Provider --</option>
+                                @foreach (var provider in Model.Providers)
+                                {
+                                    <option value="@provider.Value">@provider.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ProviderId" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save me-1"></i> Save
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#serviceDropdown').change(function () {
+                var serviceId = $(this).val();
+                $('#providerDropdown').empty();
+                if (serviceId) {
+                    $.getJSON('/Appointments/GetProvidersByService', { serviceId: serviceId }, function (data) {
+                        $('#providerDropdown').append($('<option>', { value: '', text: '-- Select Provider --' }));
+                        $.each(data, function (i, provider) {
+                            $('#providerDropdown').append($('<option>', { value: provider.value, text: provider.text }));
+                        });
+                    });
+                } else {
+                    $('#providerDropdown').append($('<option>', { value: '', text: '-- Select Provider --' }));
+                }
+            });
+        });
+    </script>
+}

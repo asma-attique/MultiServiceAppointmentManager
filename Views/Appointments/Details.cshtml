@@ -1,0 +1,92 @@
+@model MultiServiceAppointmentManager.Models.Appointment
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow rounded">
+                <div class="card-header text-white d-flex align-items-center" style="background-color: #1b7777;">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    <h4 class="mb-0">Appointment Details</h4>
+                </div>
+                <div class="card-body">
+
+                    <!-- Appointment Number -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-hash me-2 text-primary"></i> Appointment Number
+                        </h5>
+                        <p class="mb-0">@Model.Id</p>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-calendar-date-fill me-2 text-success"></i> Date
+                        </h5>
+                        <p class="mb-0">@Model.Date.ToString("yyyy-MM-dd")</p>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-clock-fill me-2 text-warning"></i> Time
+                        </h5>
+                        <p class="mb-0">@Model.Time.ToString(@"hh\:mm")</p>
+                    </div>
+
+                    <!-- Customer Name -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-person-fill me-2 text-info"></i> Customer Name
+                        </h5>
+                        <p class="mb-0">@Model.CustomerName</p>
+                    </div>
+
+                    <!-- Provider -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-person-badge-fill me-2 text-secondary"></i> Provider
+                        </h5>
+                        <p class="mb-0">@Model.Provider?.Name</p>
+                    </div>
+
+                    <!-- Service -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-list-check me-2 text-danger"></i> Service
+                        </h5>
+                        @if (Model.Service != null)
+                        {
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>@Model.Service.Name</span>
+                                
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No service linked.</p>
+                        }
+                    </div>
+
+                    <!-- Total Charges -->
+                    <div class="mb-4 p-3 border rounded bg-light">
+                        <h5 class="fw-bold">
+                            <i class="bi bi-cash-coin me-2 text-success"></i> Total Charges
+                        </h5>
+                        <p class="mb-0 fw-bold">PKR @Model.TotalCharges</p>
+                    </div>
+
+                    <!-- Back Button -->
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Back to Appointments
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
