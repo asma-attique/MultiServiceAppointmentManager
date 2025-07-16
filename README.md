@@ -41,7 +41,7 @@ Built using ASP.NET Core MVC and Entity Framework Core with a SQLite database, t
 - Providers Main: ![Providers Main](Screenshots/2.%20Providers%20Main.jpeg)
 - Add New Provider: ![Add New Provider](Screenshots/3.%20Providers%20-%20Add%20New%20Provider.jpeg)
 - Edit Providers: ![Edit Provider](Screenshots/4.%20Provider%20-%20Edit.jpeg)
-- Provider Detail: ![Provider Detail](5.%20Providers%20-%20Details.jpeg)
+- Provider Detail: ![Provider Detail](Screenshots/5.%20Providers%20-%20Details.jpeg)
 - Delete Providers: ![Delete Providers](Screenshots/6.%20Providers%20-%20Delete.jpeg)
 - Service Main: ![Service Main](Screenshots/7.%20Services%20-%20Main.jpeg)
 - Add New Service: ![Add New Service](Screenshots/8.%20Services%20-%20Add%20New%20Service.jpeg)
