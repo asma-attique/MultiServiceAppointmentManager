@@ -1,0 +1,77 @@
+# ---------------------
+# Build results
+# ---------------------
+bin/
+obj/
+
+# ---------------------
+# User-specific files
+# ---------------------
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# ---------------------
+# ASP.NET Scaffolding
+# ---------------------
+ScaffoldingReadMe.txt
+
+# ---------------------
+# Visual Studio Code workspace
+# ---------------------
+.vscode/
+
+# ---------------------
+# Dotnet core generated files
+# ---------------------
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ---------------------
+# Logs
+# ---------------------
+*.log
+
+# ---------------------
+# Database files (optional)
+# ---------------------
+*.db
+*.sqlite
+
+# ---------------------
+# Environment settings
+# ---------------------
+*.env
+
+# ---------------------
+# Published output
+# ---------------------
+publish/
+wwwroot/dist/
+
+# ---------------------
+# Node.js (if you ever use frontend packages)
+# ---------------------
+node_modules/
+npm-debug.log
+
+# ---------------------
+# JetBrains Rider / ReSharper
+# ---------------------
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# ---------------------
+# Mac system files
+# ---------------------
+.DS_Store
+
+# ---------------------
+# Windows system files
+# ---------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
